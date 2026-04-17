@@ -166,15 +166,3 @@ This project is licensed under the **MIT License**.
 If you like this project, give it a ⭐ on GitHub!
 
 ---
-
-# 🔥 EXTRA (Optional Improvements)
-
-If you want your README to look **next-level**, add:
-
-### Badges:
-
-```md
-![GitHub stars](https://img.shields.io/github/stars/alaharilakshyan/Travel-Economy-Idea-Hub)
-![GitHub forks](https://img.shields.io/github/forks/alaharilakshyan/Travel-Economy-Idea-Hub)
-![License](https://img.shields.io/github/license/alaharilakshyan/Travel-Economy-Idea-Hub)
-```
