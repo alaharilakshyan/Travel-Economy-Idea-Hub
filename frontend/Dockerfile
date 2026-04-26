@@ -43,6 +43,9 @@ RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available
 # Copy custom Apache config
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
+# Configure Apache to listen on port 10000
+RUN echo "Listen 10000" > /etc/apache2/ports.conf
+
 # Generate application key and cache config
 RUN php artisan config:cache && \
     php artisan route:cache && \
