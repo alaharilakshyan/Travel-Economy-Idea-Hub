@@ -44,13 +44,13 @@ RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
 # Configure Apache to listen on port 10000
-RUN echo "Listen 10000" > /etc/apache2/ports.conf
+RUN echo "Listen 80" > /etc/apache2/ports.conf
 
 # Generate application key and cache config
 RUN php artisan config:cache && \
     php artisan route:cache && \
     php artisan view:cache
 
-EXPOSE 10000
+EXPOSE 80
 
 CMD ["apache2-foreground"]
