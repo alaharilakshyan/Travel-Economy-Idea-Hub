@@ -15,4 +15,7 @@ export default defineConfig({
             ignored: ['**/storage/framework/views/**'],
         },
     },
+    preview: {
+        allowedHosts: ['travel-economy-idea-hub.onrender.com', '.onrender.com'],
+    },
 });
