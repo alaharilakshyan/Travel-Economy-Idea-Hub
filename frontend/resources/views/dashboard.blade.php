@@ -1,156 +1,159 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-bold text-2xl text-slate-800 dark:text-slate-100 leading-tight">
-            {{ __('My Travel Hub') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-12" x-data="dashboard()">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
+
+    <div x-data="dashboard()" class="container" style="padding: var(--spacing-8) 0;">
+        <div style="display: flex; flex-direction: column; gap: var(--spacing-8);">
             
             <!-- Welcome Banner -->
-            <div class="bg-gradient-to-r from-sky-500 to-indigo-600 rounded-2xl overflow-hidden shadow-xl">
-                <div class="p-8 text-white">
-                    <h3 class="text-3xl font-extrabold mb-2">Welcome back, {{ Auth::user()->name }}!</h3>
-                    <p class="text-sky-100 text-lg">Ready to plan your next budget-friendly adventure?</p>
-                </div>
+            <div style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); border-radius: 12px; padding: var(--spacing-8); color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 2rem; font-weight: bold; margin-bottom: var(--spacing-2);">Welcome back, {{ Auth::user()->name }}!</h3>
+                <p style="font-size: 1.125rem; opacity: 0.9;">Ready to plan your next budget-friendly adventure across India?</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                
-                <!-- Main Content: Travel Ideas & Calculator -->
-                <div class="lg:col-span-2 space-y-8">
+            <div style="display: grid; grid-template-columns: 1fr; gap: var(--spacing-8); align-items: start;">
+                <!-- Desktop Sidebar Layout Handling (inline CSS for grid) -->
+                <style>
+                    @media (min-width: 992px) {
+                        .dashboard-grid {
+                            display: grid;
+                            grid-template-columns: 2fr 1fr;
+                            gap: var(--spacing-8);
+                        }
+                    }
+                </style>
+                <div class="dashboard-grid">
                     
-                    <!-- Travel Ideas -->
-                    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-                        <div class="flex items-center justify-between mb-6">
-                            <h4 class="text-xl font-bold text-slate-800 dark:text-slate-100">Top Budget Destinations</h4>
-                            <button class="text-sm font-medium text-sky-500 hover:text-sky-600">View all</button>
-                        </div>
+                    <!-- Main Content -->
+                    <div style="display: flex; flex-direction: column; gap: var(--spacing-8);">
                         
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Idea Card 1 -->
-                            <div class="group cursor-pointer">
-                                <div class="h-40 rounded-xl bg-slate-200 dark:bg-slate-700 overflow-hidden mb-3 relative">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                                    <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=500&q=80" alt="Bali" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                                    <span class="absolute bottom-3 left-3 z-20 text-white font-bold">Bali, Indonesia</span>
-                                    <span class="absolute top-3 right-3 z-20 bg-emerald-500 text-white text-xs px-2 py-1 rounded-full font-semibold">$30/day</span>
+                        <!-- Travel Ideas -->
+                        <div class="card">
+                            <div class="card__content" style="padding: var(--spacing-6);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-6);">
+                                    <h4 style="font-size: 1.25rem; color: var(--color-text-main); margin: 0;">Top Destinations</h4>
+                                    <button style="background: none; border: none; color: var(--color-primary); font-weight: bold; cursor: pointer;">View all</button>
                                 </div>
-                                <p class="text-sm text-slate-600 dark:text-slate-400">Affordable paradise with stunning beaches, temples, and low cost of living.</p>
+                                
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-6);">
+                                    <!-- Idea Card 1 -->
+                                    <div style="cursor: pointer;">
+                                        <div style="height: 160px; border-radius: 8px; background-color: var(--color-border); overflow: hidden; margin-bottom: var(--spacing-3); position: relative;">
+                                            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); z-index: 10;"></div>
+                                            <img src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?w=500&q=80" alt="Jaipur" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" />
+                                            <span style="position: absolute; bottom: 12px; left: 12px; z-index: 20; color: white; font-weight: bold;">Jaipur, Rajasthan</span>
+                                            <span style="position: absolute; top: 12px; right: 12px; z-index: 20; background-color: var(--color-success); color: white; font-size: 0.75rem; padding: 2px 8px; border-radius: 12px; font-weight: bold;">₹2000/day</span>
+                                        </div>
+                                        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0;">The Pink City offers majestic forts, vibrant bazaars, and rich cultural heritage.</p>
+                                    </div>
+                                    <!-- Idea Card 2 -->
+                                    <div style="cursor: pointer;">
+                                        <div style="height: 160px; border-radius: 8px; background-color: var(--color-border); overflow: hidden; margin-bottom: var(--spacing-3); position: relative;">
+                                            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); z-index: 10;"></div>
+                                            <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=500&q=80" alt="Kerala" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" />
+                                            <span style="position: absolute; bottom: 12px; left: 12px; z-index: 20; color: white; font-weight: bold;">Munnar, Kerala</span>
+                                            <span style="position: absolute; top: 12px; right: 12px; z-index: 20; background-color: var(--color-success); color: white; font-size: 0.75rem; padding: 2px 8px; border-radius: 12px; font-weight: bold;">₹3000/day</span>
+                                        </div>
+                                        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0;">Experience serene tea gardens, misty hills, and beautiful backwaters.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- Idea Card 2 -->
-                            <div class="group cursor-pointer">
-                                <div class="h-40 rounded-xl bg-slate-200 dark:bg-slate-700 overflow-hidden mb-3 relative">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                                    <img src="https://images.unsplash.com/photo-1555899434-94d1368aa7af?w=500&q=80" alt="Budapest" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                                    <span class="absolute bottom-3 left-3 z-20 text-white font-bold">Budapest, Hungary</span>
-                                    <span class="absolute top-3 right-3 z-20 bg-emerald-500 text-white text-xs px-2 py-1 rounded-full font-semibold">$45/day</span>
+                        </div>
+
+                        <!-- Cost Calculator -->
+                        <div class="card">
+                            <div class="card__content" style="padding: var(--spacing-6);">
+                                <h4 style="font-size: 1.25rem; color: var(--color-text-main); margin-bottom: var(--spacing-6); display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">
+                                    Trip Cost Estimator
+                                </h4>
+                                
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-6);">
+                                    <div style="display: flex; flex-direction: column; gap: var(--spacing-4);">
+                                        <div>
+                                            <label class="form-label" style="display: block; margin-bottom: 0.25rem;">Destination Tier</label>
+                                            <select x-model="calc.tier" class="form-input">
+                                                <option value="budget">Budget (₹1500-₹3000/day)</option>
+                                                <option value="mid">Mid-Range (₹3000-₹7000/day)</option>
+                                                <option value="luxury">Luxury (₹7000+/day)</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="form-label" style="display: block; margin-bottom: 0.25rem;">Number of Days</label>
+                                            <input type="number" x-model.number="calc.days" min="1" class="form-input" />
+                                        </div>
+                                        <div>
+                                            <label class="form-label" style="display: block; margin-bottom: 0.25rem;">Flights/Trains (₹)</label>
+                                            <input type="number" x-model.number="calc.travel" min="0" class="form-input" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="background-color: var(--color-background); border-radius: 8px; padding: var(--spacing-6); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border: 1px solid var(--color-border);">
+                                        <span style="font-size: 0.875rem; color: var(--color-text-muted); font-weight: bold; margin-bottom: var(--spacing-2);">Estimated Total</span>
+                                        <div style="font-size: 2.5rem; font-weight: 900; color: var(--color-primary);" x-text="'₹' + calculateTotal()"></div>
+                                        <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: var(--spacing-4);">This is a rough estimate excluding shopping and extra activities.</p>
+                                    </div>
                                 </div>
-                                <p class="text-sm text-slate-600 dark:text-slate-400">Rich history, thermal baths, and cheap, delicious street food.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Cost Calculator -->
-                    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-                        <h4 class="text-xl font-bold text-slate-800 dark:text-slate-100 mb-6 flex items-center gap-2">
-                            <svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                            Trip Cost Estimator
-                        </h4>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Destination Tier</label>
-                                    <select x-model="calc.tier" class="w-full rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:ring-sky-500 focus:border-sky-500">
-                                        <option value="budget">Budget ($30-$50/day)</option>
-                                        <option value="mid">Mid-Range ($80-$120/day)</option>
-                                        <option value="luxury">Luxury ($200+/day)</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Number of Days</label>
-                                    <input type="number" x-model.number="calc.days" min="1" class="w-full rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:ring-sky-500 focus:border-sky-500" />
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Flights ($)</label>
-                                    <input type="number" x-model.number="calc.flights" min="0" class="w-full rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:ring-sky-500 focus:border-sky-500" />
-                                </div>
-                            </div>
-                            
-                            <div class="bg-slate-50 dark:bg-slate-700/50 rounded-xl p-6 flex flex-col justify-center items-center text-center border border-slate-100 dark:border-slate-600">
-                                <span class="text-sm text-slate-500 dark:text-slate-400 font-medium mb-2">Estimated Total</span>
-                                <div class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-indigo-500" x-text="'$' + calculateTotal()"></div>
-                                <p class="text-xs text-slate-400 mt-4">This is a rough estimate excluding visas and travel insurance.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sidebar: AI Chatbot -->
-                <div class="lg:col-span-1">
-                    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 h-[600px] flex flex-col overflow-hidden">
-                        
+                    <!-- Sidebar: AI Chatbot -->
+                    <div class="card" style="height: 600px; display: flex; flex-direction: column;">
                         <!-- Chat Header -->
-                        <div class="p-4 bg-slate-50 dark:bg-slate-700/50 border-b border-slate-100 dark:border-slate-700 flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-fuchsia-500 to-sky-500 flex items-center justify-center text-white font-bold shadow-md">
+                        <div style="padding: var(--spacing-4); background-color: var(--color-background); border-bottom: 1px solid var(--color-border); display: flex; align-items: center; gap: var(--spacing-3);">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--color-primary); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
                                 AI
                             </div>
                             <div>
-                                <h4 class="font-bold text-slate-800 dark:text-slate-100 leading-tight">Travel Assistant</h4>
-                                <span class="text-xs text-sky-500 font-medium flex items-center gap-1">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 block"></span> Online (Gemini)
+                                <h4 style="font-weight: bold; color: var(--color-text-main); margin: 0;">Travel Assistant</h4>
+                                <span style="font-size: 0.75rem; color: var(--color-success); font-weight: bold; display: flex; align-items: center; gap: 4px;">
+                                    <span style="width: 6px; height: 6px; border-radius: 50%; background-color: var(--color-success); display: inline-block;"></span> Online (Gemini)
                                 </span>
                             </div>
                         </div>
 
                         <!-- Chat Messages -->
-                        <div class="flex-grow p-4 overflow-y-auto space-y-4" id="chat-container">
-                            
+                        <div id="chat-container" style="flex-grow: 1; padding: var(--spacing-4); overflow-y: auto; display: flex; flex-direction: column; gap: var(--spacing-4);">
                             <!-- Initial Greeting -->
-                            <div class="flex gap-3">
-                                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-fuchsia-500 to-sky-500 flex-shrink-0 flex items-center justify-center text-white text-xs font-bold mt-1">AI</div>
-                                <div class="bg-slate-100 dark:bg-slate-700 p-3 rounded-2xl rounded-tl-sm text-sm text-slate-700 dark:text-slate-200">
-                                    Hi {{ Auth::user()->name }}! I'm your AI travel assistant. Where are you thinking of going, or what's your budget?
+                            <div style="display: flex; gap: var(--spacing-3);">
+                                <div style="width: 32px; height: 32px; border-radius: 50%; background-color: var(--color-primary); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem; font-weight: bold;">AI</div>
+                                <div style="background-color: var(--color-background); padding: var(--spacing-3); border-radius: 12px; border-top-left-radius: 2px; font-size: 0.875rem; color: var(--color-text-main);">
+                                    Hi {{ Auth::user()->name }}! I'm your AI travel assistant. Where in India are you thinking of going, or what's your budget?
                                 </div>
                             </div>
 
                             <template x-for="(msg, index) in messages" :key="index">
-                                <div class="flex gap-3" :class="msg.role === 'user' ? 'flex-row-reverse' : ''">
-                                    <div x-show="msg.role === 'ai'" class="w-8 h-8 rounded-full bg-gradient-to-tr from-fuchsia-500 to-sky-500 flex-shrink-0 flex items-center justify-center text-white text-xs font-bold mt-1">AI</div>
-                                    <div class="p-3 rounded-2xl text-sm max-w-[85%]"
-                                         :class="msg.role === 'user' ? 'bg-indigo-500 text-white rounded-tr-sm' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-tl-sm'"
+                                <div style="display: flex; gap: var(--spacing-3);" :style="msg.role === 'user' ? 'flex-direction: row-reverse;' : ''">
+                                    <div x-show="msg.role === 'ai'" style="width: 32px; height: 32px; border-radius: 50%; background-color: var(--color-primary); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem; font-weight: bold;">AI</div>
+                                    <div style="padding: var(--spacing-3); border-radius: 12px; font-size: 0.875rem; max-width: 85%;"
+                                         :style="msg.role === 'user' ? 'background-color: var(--color-secondary); color: white; border-top-right-radius: 2px;' : 'background-color: var(--color-background); color: var(--color-text-main); border-top-left-radius: 2px;'"
                                          x-text="msg.content">
                                     </div>
                                 </div>
                             </template>
                             
                             <!-- Loading Indicator -->
-                            <div x-show="isTyping" class="flex gap-3">
-                                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-fuchsia-500 to-sky-500 flex-shrink-0 flex items-center justify-center text-white text-xs font-bold mt-1">AI</div>
-                                <div class="bg-slate-100 dark:bg-slate-700 p-3 rounded-2xl rounded-tl-sm text-sm text-slate-700 dark:text-slate-200 flex items-center gap-1">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce"></span>
-                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style="animation-delay: 0.2s"></span>
-                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style="animation-delay: 0.4s"></span>
+                            <div x-show="isTyping" style="display: flex; gap: var(--spacing-3);">
+                                <div style="width: 32px; height: 32px; border-radius: 50%; background-color: var(--color-primary); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem; font-weight: bold;">AI</div>
+                                <div style="background-color: var(--color-background); padding: var(--spacing-3); border-radius: 12px; border-top-left-radius: 2px; font-size: 0.875rem; color: var(--color-text-main); display: flex; align-items: center; gap: 4px;">
+                                    Typing...
                                 </div>
                             </div>
                         </div>
 
                         <!-- Chat Input -->
-                        <div class="p-4 border-t border-slate-100 dark:border-slate-700">
-                            <form @submit.prevent="sendMessage" class="flex gap-2">
+                        <div style="padding: var(--spacing-4); border-top: 1px solid var(--color-border);">
+                            <form @submit.prevent="sendMessage" style="display: flex; gap: var(--spacing-2);">
                                 <input type="text" x-model="newMessage" placeholder="Ask about destinations..." 
-                                    class="flex-grow rounded-full border-slate-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:ring-sky-500 focus:border-sky-500 text-sm px-4" 
+                                    class="form-input" style="flex-grow: 1; border-radius: 20px; padding: 0.5rem 1rem;"
                                     :disabled="isTyping" />
-                                <button type="submit" class="w-10 h-10 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white flex items-center justify-center flex-shrink-0 transition-colors shadow-md disabled:opacity-50" :disabled="isTyping || newMessage.trim() === ''">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                <button type="submit" class="btn btn--secondary" style="border-radius: 50%; width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center; flex-shrink: 0;" :disabled="isTyping || newMessage.trim() === ''">
+                                    ➤
                                 </button>
                             </form>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
@@ -162,16 +165,16 @@
                 calc: {
                     tier: 'budget',
                     days: 7,
-                    flights: 400
+                    travel: 3000
                 },
                 
                 calculateTotal() {
                     let dailyRate = 0;
-                    if (this.calc.tier === 'budget') dailyRate = 40;
-                    else if (this.calc.tier === 'mid') dailyRate = 100;
-                    else if (this.calc.tier === 'luxury') dailyRate = 250;
+                    if (this.calc.tier === 'budget') dailyRate = 2000;
+                    else if (this.calc.tier === 'mid') dailyRate = 5000;
+                    else if (this.calc.tier === 'luxury') dailyRate = 12000;
                     
-                    return ((this.calc.days * dailyRate) + (this.calc.flights || 0)).toLocaleString();
+                    return ((this.calc.days * dailyRate) + (this.calc.travel || 0)).toLocaleString('en-IN');
                 },
 
                 // Chatbot State
