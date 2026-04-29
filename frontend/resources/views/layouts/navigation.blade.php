@@ -11,12 +11,14 @@
             <a href="{{ url('/ideas') }}" class="navbar__link {{ request()->is('ideas*') ? 'navbar__link--active' : '' }}">Idea Hub</a>
             <a href="{{ url('/events') }}" class="navbar__link {{ request()->is('events*') ? 'navbar__link--active' : '' }}">Events</a>
             <a href="{{ url('/about') }}" class="navbar__link {{ request()->is('about') ? 'navbar__link--active' : '' }}">About</a>
+            <a href="{{ url('/mission') }}" class="navbar__link {{ request()->is('mission') ? 'navbar__link--active' : '' }}">Mission</a>
             <a href="{{ url('/contact') }}" class="navbar__link {{ request()->is('contact') ? 'navbar__link--active' : '' }}">Contact</a>
         </div>
         
         <!-- Ensure desktop links show on larger screens via inline style for now (since we lack tailwind classes in vanilla) -->
         <style>
             @media (min-width: 768px) {
+                .navbar__links { display: flex !important; gap: var(--spacing-4); }
                 .desktop-nav-actions { display: flex !important; }
                 .mobile-menu-btn { display: none !important; }
             }
@@ -50,6 +52,7 @@
         <a href="{{ url('/ideas') }}" class="navbar__link">Idea Hub</a>
         <a href="{{ url('/events') }}" class="navbar__link">Events</a>
         <a href="{{ url('/about') }}" class="navbar__link">About</a>
+        <a href="{{ url('/mission') }}" class="navbar__link">Mission</a>
         <a href="{{ url('/contact') }}" class="navbar__link">Contact</a>
         
         <div style="border-top: 1px solid var(--color-border); margin: var(--spacing-2) 0;"></div>

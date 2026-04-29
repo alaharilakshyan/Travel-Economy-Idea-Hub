@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Idea extends Model
 {
-    protected $fillable = ['user_id', 'spot_id', 'title', 'description', 'status', 'upvotes_count'];
+    protected $fillable = ['user_id', 'spot_id', 'title', 'description', 'category', 'location', 'status', 'upvotes_count', 'media'];
+
+    protected $casts = [
+        'media' => 'array',
+    ];
 
     public function user()
     {

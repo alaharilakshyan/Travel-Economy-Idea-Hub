@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Idea;
 use App\Models\VolunteerActivity;
+use App\Models\VolunteerApplication;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

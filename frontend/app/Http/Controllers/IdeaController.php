@@ -26,10 +26,27 @@ class IdeaController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'category' => 'required|string|max:100',
+            'location' => 'nullable|string|max:255',
+            'media' => 'nullable|array',
+            'media.*' => 'file|mimes:jpg,jpeg,png,gif,mp4,avi,mov,pdf,doc,docx|max:10240',
         ]);
 
         $validated['user_id'] = auth()->id();
         $validated['status'] = 'pending';
+
+        // Handle file uploads
+        $mediaPaths = [];
+        if ($request->hasFile('media')) {
+            foreach ($request->file('media') as $file) {
+                $path = $file->store('ideas/media', 'public');
+                $mediaPaths[] = [
+                    'path' => $path,
+                    'name' => $file->getClientOriginalName(),
+                    'type' => $file->getClientMimeType(),
+                ];
+            }
+        }
+        $validated['media'] = $mediaPaths;
 
         Idea::create($validated);
 

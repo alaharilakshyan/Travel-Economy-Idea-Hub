@@ -10,6 +10,41 @@
                 <p style="font-size: 1.125rem; opacity: 0.9;">Ready to plan your next budget-friendly adventure across India?</p>
             </div>
 
+            <!-- Quick Navigation -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-4);">
+                <a href="{{ route('ideas.index') }}" class="card" style="text-decoration: none; display: flex; align-items: center; gap: var(--spacing-4); padding: var(--spacing-4);">
+                    <div style="width: 50px; height: 50px; border-radius: 12px; background: var(--color-primary); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">💡</div>
+                    <div>
+                        <h4 style="font-size: 1rem; color: var(--color-text-main); margin: 0;">Community Ideas</h4>
+                        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0;">Browse & share ideas</p>
+                    </div>
+                </a>
+                
+                <a href="{{ route('volunteer.index') }}" class="card" style="text-decoration: none; display: flex; align-items: center; gap: var(--spacing-4); padding: var(--spacing-4);">
+                    <div style="width: 50px; height: 50px; border-radius: 12px; background: var(--color-secondary); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">🤝</div>
+                    <div>
+                        <h4 style="font-size: 1rem; color: var(--color-text-main); margin: 0;">Volunteer</h4>
+                        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0;">Join activities</p>
+                    </div>
+                </a>
+                
+                <a href="{{ route('ideas.index') }}" class="card" style="text-decoration: none; display: flex; align-items: center; gap: var(--spacing-4); padding: var(--spacing-4);">
+                    <div style="width: 50px; height: 50px; border-radius: 12px; background: var(--color-success); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">✍️</div>
+                    <div>
+                        <h4 style="font-size: 1rem; color: var(--color-text-main); margin: 0;">Submit Idea</h4>
+                        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0;">Share your ideas</p>
+                    </div>
+                </a>
+                
+                <a href="{{ route('volunteer.my-applications') }}" class="card" style="text-decoration: none; display: flex; align-items: center; gap: var(--spacing-4); padding: var(--spacing-4);">
+                    <div style="width: 50px; height: 50px; border-radius: 12px; background: var(--color-warning); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">📋</div>
+                    <div>
+                        <h4 style="font-size: 1rem; color: var(--color-text-main); margin: 0;">My Applications</h4>
+                        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0;">Track applications</p>
+                    </div>
+                </a>
+            </div>
+
             <div style="display: grid; grid-template-columns: 1fr; gap: var(--spacing-8); align-items: start;">
                 <!-- Desktop Sidebar Layout Handling (inline CSS for grid) -->
                 <style>
@@ -31,7 +66,7 @@
                             <div class="card__content" style="padding: var(--spacing-6);">
                                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-6);">
                                     <h4 style="font-size: 1.25rem; color: var(--color-text-main); margin: 0;">Top Destinations</h4>
-                                    <button style="background: none; border: none; color: var(--color-primary); font-weight: bold; cursor: pointer;">View all</button>
+                                    <a href="{{ route('ideas.index') }}" style="background: none; border: none; color: var(--color-primary); font-weight: bold; cursor: pointer; text-decoration: none;">View all</a>
                                 </div>
                                 
                                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-6);">
@@ -92,6 +127,95 @@
                                         <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: var(--spacing-4);">This is a rough estimate excluding shopping and extra activities.</p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- Secret Spots Section -->
+                        <div class="card">
+                            <div class="card__content" style="padding: var(--spacing-6);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-6);">
+                                    <h4 style="font-size: 1.25rem; color: var(--color-text-main); margin: 0;">
+                                        🔒 Secret Spots to Visit
+                                    </h4>
+                                    <span style="font-size: 0.75rem; color: var(--color-text-muted); background: var(--color-background); padding: 4px 12px; border-radius: 20px;">Hidden Gems</span>
+                                </div>
+                                
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-4);">
+                                    <div style="background: var(--color-background); border-radius: 8px; padding: var(--spacing-4); border-left: 4px solid var(--color-primary);">
+                                        <h5 style="margin-bottom: var(--spacing-2); color: var(--color-primary);">Gokarna, Karnataka</h5>
+                                        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: var(--spacing-2);">Peaceful beaches away from Goa crowds</p>
+                                        <div style="display: flex; gap: var(--spacing-2); flex-wrap: wrap;">
+                                            <span style="font-size: 0.75rem; background: white; padding: 2px 8px; border-radius: 12px;">🏖️ Beach</span>
+                                            <span style="font-size: 0.75rem; background: white; padding: 2px 8px; border-radius: 12px;">🧘 Yoga</span>
+                                        </div>
+                                    </div>
+                                    <div style="background: var(--color-background); border-radius: 8px; padding: var(--spacing-4); border-left: 4px solid var(--color-secondary);">
+                                        <h5 style="margin-bottom: var(--spacing-2); color: var(--color-secondary);">Ziro Valley, Arunachal</h5>
+                                        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: var(--spacing-2);">Rice fields and Apatani tribe culture</p>
+                                        <div style="display: flex; gap: var(--spacing-2); flex-wrap: wrap;">
+                                            <span style="font-size: 0.75rem; background: white; padding: 2px 8px; border-radius: 12px;">🌾 Valley</span>
+                                            <span style="font-size: 0.75rem; background: white; padding: 2px 8px; border-radius: 12px;">🏔️ Hills</span>
+                                        </div>
+                                    </div>
+                                    <div style="background: var(--color-background); border-radius: 8px; padding: var(--spacing-4); border-left: 4px solid var(--color-primary);">
+                                        <h5 style="margin-bottom: var(--spacing-2); color: var(--color-primary);">Hampi Ruins, Karnataka</h5>
+                                        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: var(--spacing-2);">Ancient boulder-strewn landscape</p>
+                                        <div style="display: flex; gap: var(--spacing-2); flex-wrap: wrap;">
+                                            <span style="font-size: 0.75rem; background: white; padding: 2px 8px; border-radius: 12px;">🏛️ Heritage</span>
+                                            <span style="font-size: 0.75rem; background: white; padding: 2px 8px; border-radius: 12px;">🌅 Sunset</span>
+                                        </div>
+                                    </div>
+                                    <div style="background: var(--color-background); border-radius: 8px; padding: var(--spacing-4); border-left: 4px solid var(--color-secondary);">
+                                        <h5 style="margin-bottom: var(--spacing-2); color: var(--color-secondary);">Majuli Island, Assam</h5>
+                                        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: var(--spacing-2);">World's largest river island</p>
+                                        <div style="display: flex; gap: var(--spacing-2); flex-wrap: wrap;">
+                                            <span style="font-size: 0.75rem; background: white; padding: 2px 8px; border-radius: 12px;">🏝️ Island</span>
+                                            <span style="font-size: 0.75rem; background: white; padding: 2px 8px; border-radius: 12px;">🎭 Culture</span>
+                                        </div>
+                                    </div>
+                                    <div style="background: var(--color-background); border-radius: 8px; padding: var(--spacing-4); border-left: 4px solid var(--color-primary);">
+                                        <h5 style="margin-bottom: var(--spacing-2); color: var(--color-primary);">Spiti Valley, Himachal</h5>
+                                        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: var(--spacing-2);">Cold desert mountain valley</p>
+                                        <div style="display: flex; gap: var(--spacing-2); flex-wrap: wrap;">
+                                            <span style="font-size: 0.75rem; background: white; padding: 2px 8px; border-radius: 12px;">🏔️ Mountains</span>
+                                            <span style="font-size: 0.75rem; background: white; padding: 2px 8px; border-radius: 12px;">🛕 Monasteries</span>
+                                        </div>
+                                    </div>
+                                    <div style="background: var(--color-background); border-radius: 8px; padding: var(--spacing-4); border-left: 4px solid var(--color-secondary);">
+                                        <h5 style="margin-bottom: var(--spacing-2); color: var(--color-secondary);">Chettinad, Tamil Nadu</h5>
+                                        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: var(--spacing-2);">Heritage mansions & cuisine</p>
+                                        <div style="display: flex; gap: var(--spacing-2); flex-wrap: wrap;">
+                                            <span style="font-size: 0.75rem; background: white; padding: 2px 8px; border-radius: 12px;">🏛️ Palaces</span>
+                                            <span style="font-size: 0.75rem; background: white; padding: 2px 8px; border-radius: 12px;">🍛 Food</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live India Map -->
+                        <div class="card">
+                            <div class="card__content" style="padding: var(--spacing-6);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-4);">
+                                    <h4 style="font-size: 1.25rem; color: var(--color-text-main); margin: 0;">
+                                        🗺️ Explore India Map
+                                    </h4>
+                                    <a href="https://www.google.com/maps/place/India" target="_blank" style="font-size: 0.875rem; color: var(--color-primary); text-decoration: none;">Open in Google Maps →</a>
+                                </div>
+                                <div style="border-radius: 12px; overflow: hidden; border: 1px solid var(--color-border);">
+                                    <iframe 
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15275878.74647374!2d73.73199199999999!3d20.771924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1851a7aed!2sIndia!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin"
+                                        width="100%" 
+                                        height="400" 
+                                        style="border:0;" 
+                                        allowfullscreen="" 
+                                        loading="lazy" 
+                                        referrerpolicy="no-referrer-when-downgrade">
+                                    </iframe>
+                                </div>
+                                <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-top: var(--spacing-3);">
+                                    Click on the map to explore different regions of India. Discover destinations across all 28 states and 8 union territories.
+                                </p>
                             </div>
                         </div>
                     </div>

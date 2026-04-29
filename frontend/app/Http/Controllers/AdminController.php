@@ -24,8 +24,10 @@ class AdminController extends Controller
         $stats = [
             'total_users' => User::count(),
             'total_ideas' => Idea::count(),
+            'pending_ideas' => Idea::where('status', 'pending')->count(),
             'total_volunteer_activities' => VolunteerActivity::count(),
             'total_volunteer_applications' => VolunteerApplication::count(),
+            'pending_applications' => VolunteerApplication::where('status', 'pending')->count(),
         ];
 
         return view('admin.dashboard', compact('stats'));
@@ -33,7 +35,10 @@ class AdminController extends Controller
 
     public function ideas()
     {
-        $ideas = Idea::with('user')->latest()->paginate(10);
+        $ideas = Idea::with('user')
+            ->orderByRaw("FIELD(status, 'pending', 'approved', 'rejected')")
+            ->latest()
+            ->paginate(10);
         return view('admin.ideas', compact('ideas'));
     }
 

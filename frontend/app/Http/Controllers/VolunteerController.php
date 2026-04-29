@@ -24,24 +24,37 @@ class VolunteerController extends Controller
         return view('volunteer.show', compact('activity', 'hasApplied'));
     }
 
-    public function apply(Request $request, VolunteerActivity $activity)
+    public function apply(VolunteerActivity $activity)
     {
         $existing = VolunteerApplication::where('activity_id', $activity->id)
             ->where('user_id', auth()->id())
             ->first();
 
         if ($existing) {
-            return back()->with('error', 'You have already applied for this activity.');
+            return redirect()->route('volunteer.my-applications')->with('error', 'You have already applied for this activity.');
+        }
+
+        return view('volunteer.apply', compact('activity'));
+    }
+
+    public function applyStore(Request $request, VolunteerActivity $activity)
+    {
+        $existing = VolunteerApplication::where('activity_id', $activity->id)
+            ->where('user_id', auth()->id())
+            ->first();
+
+        if ($existing) {
+            return redirect()->route('volunteer.my-applications')->with('error', 'You have already applied for this activity.');
         }
 
         $validated = $request->validate([
-            'message' => 'required|string|max:500',
+            'message' => 'nullable|string|max:500',
         ]);
 
         VolunteerApplication::create([
             'activity_id' => $activity->id,
             'user_id' => auth()->id(),
-            'message' => $validated['message'],
+            'message' => $validated['message'] ?? null,
             'status' => 'pending',
         ]);
 
